@@ -121,6 +121,11 @@ button {
   font-size: var(--font-size-medium);
 }
 
+.restart {
+  display: none;
+  margin-top: 0;
+}
+
 /* Overlay */
 
 #overlay {

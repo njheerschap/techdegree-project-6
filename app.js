@@ -1,4 +1,5 @@
 const startButton = document.querySelector('.btn__reset');
+const restart = document.querySelector('.restart');
 const keyboard = document.querySelector('#qwerty');
 const phrase = document.querySelector('#phrase');
 let wrongGuess = 0
@@ -18,7 +19,7 @@ const addPhraseToDisplay = arr => {
     for (let i = 0; i < phraseCharacters.length; i++) {
         const li = document.createElement('li');
         const letterBlock = phrase.appendChild(li);
-        letterBlock.textContent = phraseCharacters[i];
+        letterBlock.textContent = phraseCharacters[i].toUpperCase();
         if (li.textContent === ' ') {
             li.className = 'space'
         } else {
@@ -34,8 +35,9 @@ const checkLetter = (clicked) => {
     const li = document.querySelectorAll('li');
     let match = null;
     for (let i = 0; i < li.length; i++) {
-        if ( clicked.textContent === li[i].textContent ) {
+        if ( clicked.textContent.toUpperCase() === li[i].textContent ) {
             li[i].className += ' show';
+            li[i].style.transition = '.5s'
             match = clicked.textContent;
         } 
     }   
@@ -47,15 +49,18 @@ const checkWin = () => {
     let letters = document.querySelectorAll('li.letter');
     let shownLetters = document.querySelectorAll('li.show');
     const youWon = document.querySelector('#overlay');
+    console.log(restart);
     if (letters.length === shownLetters.length) {
         youWon.className = 'win';
         startButton.textContent = 'You Won!!!'; 
         youWon.style.display = 'flex';
+        restart.style.display = 'flex';
     }
     if (wrongGuess > 4 ) {
         youWon.className = 'lose';
         startButton.textContent = 'Sorry, you lost'
         youWon.style.display = 'flex'; 
+        restart.style.display = 'flex';
     }
     
 
@@ -65,6 +70,10 @@ const checkWin = () => {
 startButton.addEventListener ('click', () => {
     const startGame = document.querySelector('#overlay');
     startGame.style.display = 'none'    
+})
+
+restart.addEventListener('click', () => {
+    location.reload();
 })
 
 // Capture user clicks. If correct, display in puzzle. If incorrect, lose life
