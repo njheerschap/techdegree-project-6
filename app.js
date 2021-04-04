@@ -72,6 +72,7 @@ startButton.addEventListener ('click', () => {
     startGame.style.display = 'none'    
 })
 
+// Restart game after win or loss
 restart.addEventListener('click', () => {
     location.reload();
 })
