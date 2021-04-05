@@ -1,5 +1,6 @@
 const startButton = document.querySelector('.btn__reset');
 const restart = document.querySelector('.restart');
+const overlay = document.querySelector('#overlay');
 const keyboard = document.querySelector('#qwerty');
 const phrase = document.querySelector('#phrase');
 let wrongGuess = 0
@@ -48,28 +49,26 @@ const checkLetter = (clicked) => {
 const checkWin = () => {
     let letters = document.querySelectorAll('li.letter');
     let shownLetters = document.querySelectorAll('li.show');
-    const youWon = document.querySelector('#overlay');
     console.log(restart);
     if (letters.length === shownLetters.length) {
-        youWon.className = 'win';
+        overlay.className = 'win';
         startButton.textContent = 'You Won!!!'; 
-        youWon.style.display = 'flex';
+        overlay.style.display = 'flex';
         restart.style.display = 'flex';
     }
     if (wrongGuess > 4 ) {
-        youWon.className = 'lose';
+        overlay.className = 'lose';
         startButton.textContent = 'Sorry, you lost'
-        youWon.style.display = 'flex'; 
+        overlay.style.display = 'flex'; 
         restart.style.display = 'flex';
-    }
-    
-
+    }    
 }
 
 // Display the game board
 startButton.addEventListener ('click', () => {
-    const startGame = document.querySelector('#overlay');
-    startGame.style.display = 'none'    
+    if(overlay.className !== 'won' & overlay.className !== 'lose'){
+        overlay.style.display = 'none'
+    }    
 })
 
 // Restart game after win or loss
