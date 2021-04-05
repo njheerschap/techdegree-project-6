@@ -66,7 +66,7 @@ const checkWin = () => {
 
 // Display the game board
 startButton.addEventListener ('click', () => {
-    if(overlay.className !== 'won' & overlay.className !== 'lose'){
+    if(overlay.className !== 'win' & overlay.className !== 'lose'){
         overlay.style.display = 'none'
     }    
 })
