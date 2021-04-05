@@ -55,7 +55,6 @@ const checkLetter = (clicked) => {
 const checkWin = () => {
     let letters = document.querySelectorAll('li.letter');
     let shownLetters = document.querySelectorAll('li.show');
-    console.log(restart);
     if (letters.length === shownLetters.length) {
         overlay.className = 'win';
         startButton.textContent = 'You Won!!!'; 
@@ -70,6 +69,24 @@ const checkWin = () => {
     }    
 }
 
+const restartGame = () => {
+    overlay.style.display = 'none';
+    let currentPhrase = document.querySelectorAll('#phrase li');
+    let lifeCount = document.querySelectorAll('.tries img');
+    let key = document.querySelectorAll('button');
+    for (let i = 0; i < currentPhrase.length; i++) {
+        currentPhrase[i].remove();
+    }
+    for(let i = 0; i < lifeCount.length; i ++) {
+        lifeCount[i].src = 'images/liveHeart.png';
+    }
+    for (let i = 0; i < key.length; i++) {
+        key[i].className = '';
+    }
+    addPhraseToDisplay();
+    wrongGuess = 0;
+}
+
 // Display the game board
 startButton.addEventListener ('click', () => {
     if(overlay.className !== 'win' & overlay.className !== 'lose'){
@@ -79,7 +96,7 @@ startButton.addEventListener ('click', () => {
 
 // Restart game after win or loss
 restart.addEventListener('click', () => {
-    location.reload();
+    restartGame();
 })
 
 // Capture user clicks. If correct, display in puzzle. If incorrect, lose life
@@ -91,9 +108,8 @@ keyboard.addEventListener ('click', (e) => {
         if (target.className !== 'chosen' & targetContent === isCorrectLetter) {
             target.className = 'chosen';
         } else if (targetContent !== isCorrectLetter & target.className !== 'chosen') {
-            let ol = document.querySelector('ol');
-            let li = document.querySelector('.tries');
-            ol.removeChild(li);
+            let lifeCount = document.querySelectorAll('.tries img');
+            lifeCount[wrongGuess].src = 'images/lostHeart.png';
             target.className = 'chosen';
             wrongGuess += 1;
         }     
