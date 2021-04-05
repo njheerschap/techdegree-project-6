@@ -4,7 +4,13 @@ const overlay = document.querySelector('#overlay');
 const keyboard = document.querySelector('#qwerty');
 const phrase = document.querySelector('#phrase');
 let wrongGuess = 0
-let phrases = ['rome was not built in a day', 'the early bird gets the worm', 'the end justifies the means', 'a picture is worth a thousand words', 'it takes two to tango', 'a drop in the bucket']
+let phrases = [
+    'rome was not built in a day', 
+    'the early bird gets the worm', 
+    'the end justifies the means', 
+    'it takes two to tango', 
+    'a drop in the bucket'
+]
 
 // Generate random phrase from 'phrases'
 const getRandomPhrase = arr => {
