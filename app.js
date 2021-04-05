@@ -13,15 +13,15 @@ let phrases = [
 ]
 
 // Generate random phrase from 'phrases'
-const getRandomPhrase = arr => {
-    const randomIndex = Math.floor(Math.random() * phrases.length);
-    const randomPhrase = phrases[randomIndex];
+const getRandomPhrase = (arr) => {
+    const randomIndex = Math.floor(Math.random() * arr.length);
+    const randomPhrase = arr[randomIndex];
     return randomPhrase;  
 }
 
 // Display phrase characters 
-const addPhraseToDisplay = arr => {
-    const randomPhrase = getRandomPhrase();
+const addPhraseToDisplay = () => {
+    const randomPhrase = getRandomPhrase(phrases);
     const phraseCharacters = randomPhrase.split('')
     for (let i = 0; i < phraseCharacters.length; i++) {
         const li = document.createElement('li');
@@ -36,7 +36,7 @@ const addPhraseToDisplay = arr => {
 }
 
 // Check whether clicked letter is a match
-const phraseToGuess = getRandomPhrase();
+const phraseToGuess = getRandomPhrase(phrases);
 addPhraseToDisplay(phraseToGuess);
 const checkLetter = (clicked) => {
     const li = document.querySelectorAll('li');
